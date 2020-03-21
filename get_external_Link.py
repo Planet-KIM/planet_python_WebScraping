@@ -10,7 +10,30 @@ import random
 import os
 
 pages = set()
+allExtLinks = set()
+allIntLinks = set()
 random.seed(datetime.datetime.now())
+
+#전의 코드는 외부링크를 발견할 때까지 무제한적으로 재귀를 하는 방법입니다.
+#재귀 제한이 걸릴 떄까지 기다리지 않고 예외처리를 해주는 코드를 생성해야합니다.
+def getAllExternalLinks(siteUrl):
+    html = urlopen(siteUrl) #why have error? url op
+    domain = '{}://{}'.format(urlparse(siteUrl).scheme, urlparse(siteUrl).netloc)
+    bs = BeautifulSoup(html, 'html.parser')
+    
+    internalLinks = getInternalLinks(bs, domain)
+    externalLinks = getExternalLinks(bs, domain)
+    
+    for link in externalLinks:
+        if link not in allExtLinks:
+            allExtLinks.add(link)
+            print('allExtLinks : ' + link)
+            
+    for link in internalLinks:
+        if link not in allIntLinks:
+            allIntLinks.add(link)
+            print('allIntLinks : ' + link)
+            getAllExternalLinks(link)
 
 #페이지에서 발견된 내부링크를 모두 목록으로 만드는 function
 def getInternalLinks(bs, includeUrl):
@@ -53,5 +76,10 @@ def followExternalOnly(startingSite):
     externalLink = getRandomExternalLink(startingSite)
     print('Random external link is: {}'.format(externalLink))
     followExternalOnly(externalLink)
-    
-followExternalOnly('http://oreilly.com')
+
+#solution 1    
+#followExternalOnly('http://oreilly.com')
+
+#solution 2
+allIntLinks.add('http://oreilly.com')
+getAllExternalLinks('http://oreilly.com')
