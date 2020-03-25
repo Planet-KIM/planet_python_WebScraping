@@ -1,6 +1,29 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
+ 
+import sys
+import io
+import os
+
+def changeUtf8():
+    sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
+
+
+def createFolder(folderName):
+    try:
+        if not os.path.exists(folderName):
+            os.mkdir(folderName)
+        except OSError as e:
+            print('Folder is exists :' + folderName)
+    
+#인코딩하기 위해 필요한 것 입니다.
+changeUtf8()
+"""
+folderName = './data'
+createFolder(folderName)
+"""
 
 pages = set()
 
