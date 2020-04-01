@@ -8,6 +8,15 @@ import datetime
 import random
 
 import os
+import sys
+import io
+
+
+def changeUtf8():
+    sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding = 'utf-8')
+    sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding = 'utf-8')
+
+changeUtf8()
 
 pages = set()
 allExtLinks = set()
@@ -20,15 +29,15 @@ def getAllExternalLinks(siteUrl):
     html = urlopen(siteUrl) #why have error? url op
     domain = '{}://{}'.format(urlparse(siteUrl).scheme, urlparse(siteUrl).netloc)
     bs = BeautifulSoup(html, 'html.parser')
-    
+
     internalLinks = getInternalLinks(bs, domain)
     externalLinks = getExternalLinks(bs, domain)
-    
+
     for link in externalLinks:
         if link not in allExtLinks:
             allExtLinks.add(link)
             print('allExtLinks : ' + link)
-            
+
     for link in internalLinks:
         if link not in allIntLinks:
             allIntLinks.add(link)
@@ -47,7 +56,7 @@ def getInternalLinks(bs, includeUrl):
             else:
                 internalLinks.append(link.attrs['href'])
     return internalLinks
-    
+
 #페이지에서 발견된 외부링크를 모두 목록으로 만드는 function
 def getExternalLinks(bs, excludeUrl):
     externalLinks = []
@@ -57,27 +66,27 @@ def getExternalLinks(bs, excludeUrl):
             if link.attrs['href'] not in externalLinks:
                 externalLinks.append(link.attrs['href'])
     return externalLinks
-    
+
 def getRandomExternalLink(startingPage):
     html = urlopen(startingPage)
     bs = BeautifulSoup(html, 'html.parser')
-    
+
     externalLinks = getExternalLinks(bs, urlparse(startingPage).netloc)
     if len(externalLinks) == 0:
         print('No external links, looking around the site for one')
-        
+
         domain = '{}://{}'.format(urlparse(startingPage).scheme, urlparse(startingPage).netloc)
         internalLinks = getInternalLinks(bs, domain)
         return getRandomExternalLink(internalLinks[random.randint(0, len(internalLinks)-1)])
     else:
         return externalLinks[random.randint(0, len(externalLinks)-1)]
-        
+
 def followExternalOnly(startingSite):
     externalLink = getRandomExternalLink(startingSite)
     print('Random external link is: {}'.format(externalLink))
     followExternalOnly(externalLink)
 
-#solution 1    
+#solution 1
 #followExternalOnly('http://oreilly.com')
 
 #solution 2
