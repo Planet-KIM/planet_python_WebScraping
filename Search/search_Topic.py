@@ -34,6 +34,25 @@ class Website:
         self.titleTag = titleTag
         self.bodyTag = bodyTag
 
+class Webpage:
+    def __init__(self, name, url, titleTag):
+        self.name = name
+        self.url = url
+        self.titleTag = titleTag
+
+class Product(Website):
+    '''제품 페이지 스크랩에 필요한 정보를 저장하는 클래스 '''
+    def __init__(self, name, url, titleTag, productNumberTag, priceTag):
+        Website.__init__(self, name, url, titleTag)
+        self.productNumberTag = productNumberTag
+        self.priceTag = priceTag
+
+class Articel(Website):
+    '''기사 페이지 스크랩에 ㅍ리요한 정보를 저장하는 클래스'''
+    def __init__(self, name, url, titleTag, bodyTag, dateTag):
+        Website.__init__(self, name, url, titleTag)
+        self.bodyTag = bodyTag
+        self.dateTag = dateTag
 class Crawler:
     def getPage(self, url):
         try:
