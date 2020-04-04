@@ -1,0 +1,8 @@
+2020-04-04 14:08:33 [scrapy.utils.log] INFO: Scrapy 1.6.0 started (bot: wikiSpider)
+2020-04-04 14:08:33 [scrapy.utils.log] INFO: Versions: lxml 4.5.0.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.7 (default, Mar 23 2020, 23:19:08) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1f  31 Mar 2020), cryptography 2.8, Platform Windows-10-10.0.18362-SP0
+2020-04-04 14:08:42 [scrapy.utils.log] INFO: Scrapy 1.6.0 started (bot: wikiSpider)
+2020-04-04 14:08:42 [scrapy.utils.log] INFO: Versions: lxml 4.5.0.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.7 (default, Mar 23 2020, 23:19:08) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1f  31 Mar 2020), cryptography 2.8, Platform Windows-10-10.0.18362-SP0
+2020-04-04 14:09:07 [scrapy.utils.log] INFO: Scrapy 1.6.0 started (bot: wikiSpider)
+2020-04-04 14:09:07 [scrapy.utils.log] INFO: Versions: lxml 4.5.0.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.7 (default, Mar 23 2020, 23:19:08) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1f  31 Mar 2020), cryptography 2.8, Platform Windows-10-10.0.18362-SP0
+2020-04-04 14:09:52 [scrapy.utils.log] INFO: Scrapy 1.6.0 started (bot: wikiSpider)
+2020-04-04 14:09:52 [scrapy.utils.log] INFO: Versions: lxml 4.5.0.0, libxml2 2.9.9, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.10.0, Python 3.7.7 (default, Mar 23 2020, 23:19:08) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.1.0 (OpenSSL 1.1.1f  31 Mar 2020), cryptography 2.8, Platform Windows-10-10.0.18362-SP0
