@@ -1,8 +1,26 @@
-import scrapy
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import CrawlSpider, Rule
+from wikiSpider.items import Article
 
-class ArticleSpider(scrapy.Spider):
-    name  = 'article'
+class ArticleSpider(CrawlSpider):
+    name  = 'articleItems'
+    allowed_domains = ['wikipedia.org']
+    start_urls = ['https://wikipedia.org/wiki/Benevolent''_dictator_for_life']
+    rules = [
+        Rule(LinkExtractor(allow='en.wikipedia.org/wiki/((?!:).)*$'),
+        callback='parse_items', follow=True),
+    ]
 
+    def parse_items(self, response):
+        article = Article()
+        article['url'] = response.url
+        article['title'] = response.css('h1::text').extract_first()
+        article['text'] = response.xpath('//div[@id=''"mw-content-text"]//text()').extract()
+        lastUpdated = response.css('li#footer-info-lastmod::text').extract_first()
+        article['lastUpdated'] = lastUpdated.replace('This page was ''last edited on', '')
+        return article
+
+    '''
     def start_requests(self):
         urls = [
             'http://en.wikipedia.org/wiki/Python_'
@@ -17,3 +35,4 @@ class ArticleSpider(scrapy.Spider):
         title = response.css('h1::text').extract_first()
         print('Url is {}'.format(url))
         print('Title is {}'.format(title))
+    '''

@@ -7,8 +7,9 @@
 
 import scrapy
 
-
-class WikispiderItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+#각 페이지에서 수집할 필드들 생성
+class Article(scrapy.Item):
+    url = scrapy.Field()
+    title = scrapy.Field()
+    text = scrapy.Field()
+    lastUpdated = scrapy.Field()
