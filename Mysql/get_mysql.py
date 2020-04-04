@@ -14,6 +14,9 @@ cur.execute("USE scraping")
 random.seed(datetime.now())
 
 def store(title, content):
+    print('TITLE : {}'.format(title))
+    print('CONTENT : {}'.format(content))
+
     cur.execute(
         'INSERT INTO pages (title, content) VALUES ("%s", "%s")',
         (title, content)
