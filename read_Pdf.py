@@ -20,6 +20,7 @@ def readPDF(pdfFile):
     return content
 
 pdfFile = urlopen('http://pythonscraping.com/pages/warandpeace/chapter1.pdf')
+#pdfFile = open('chapter1.pdf', 'rb')
 outputString = readPDF(pdfFile)
 print(outputString)
 pdfFile.close()
