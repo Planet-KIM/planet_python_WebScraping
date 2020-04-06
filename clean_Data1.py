@@ -28,8 +28,29 @@ def cleanInput(content):
 def getNgramsFromSentence(content, n):
     output = []
     for i in range(len(content)-n+1):
-        output.append(content[i:i+n])
+        if not isCommon(content[i:i+n]):
+            output.append(content[i:i+n])
     return output
+
+def isCommon(ngrams):
+    commonWords = ['The', 'BE', 'AND', 'OF', 'A', 'IN', 'TO', 'HAVE',
+                   'IT', 'I', 'THAT', 'FOR', 'YOU', 'HE', 'WITH', 'ON',
+                   'DO', 'SAY', 'THIS', 'THEY', 'IS', 'AN', 'AT', 'BUT',
+                   'WE', 'HIS', 'FROM', 'THAT', 'NOT', 'BY', 'SHE', 'OR',
+                   'AS', 'WHAT', 'GO', 'THEIR', 'CAN', 'WHO', 'GET', 'IF',
+                   'WOULD', 'HER', 'ALL', 'MY', 'MAKE', 'ABOUT', 'KNOW',
+                   'WILL', 'AS', 'UP', 'ONE', 'TIME', 'HAS', 'BEEN', 'THERE',
+                   'YEAR', 'SO', 'THINK', 'WHEN', 'WHICH', 'THEM', 'SOME',
+                   'ME', 'PEOPLE', 'TAKE', 'OUT', 'INTO', 'JUST', 'SEE',
+                   'HIM', 'YOUR', 'COME', 'COULD', 'NOW', 'THAN', 'LIKE',
+                   'OTHER', 'HOW', 'THEN', 'ITS', 'OUR', 'TWO', 'MORE',
+                   'THESE', 'WANT', 'WAY', 'LOOK', 'FIRST', 'ALSO', 'NEW',
+                   'BECAUSE', 'DAY', 'MORE', 'USE', 'NO', 'MAN', 'FIND',
+                   'HERE', 'THING', 'GIVE', 'MANY', 'WELL']
+    for word in ngrams:
+        if word in commonWords:
+            return True
+        return False
 
 #진입점 역할
 def getNgrams(content, n):
@@ -42,10 +63,16 @@ def getNgrams(content, n):
         ngrams_list.extend(newNgrams)
         ngrams.update(newNgrams)
     return(ngrams)
-
+'''
 html = urlopen('http://en.wikipedia.org/wiki/Python_(programming_language)')
 bs = BeautifulSoup(html, 'html.parser')
 content = bs.find('div', {'id': 'mw-content-text'}).get_text()
 ngrams = getNgrams(content, 2)
 print(ngrams)
 print('2-grams count is : ' + str(len(ngrams)))
+'''
+
+speech = 'http://pythonscraping.com/files/inaugurationSpeech.txt'
+content = str(urlopen(speech).read(), 'utf-8')
+ngrams = getNgrams(content, 2)
+print(ngrams)
