@@ -1,12 +1,16 @@
 import smtplib
 from email.mime.text import MIMEText
 
-msg = MIMEText('hello text message')
+smtp = smtplib.SMTP('smtp.gmail.com', 587)
+smtp.ehlo()
+smtp.starttls()
+smtp.login('kdw59520@gmail.com', 'password')
 
+msg = MIMEText('hello text message')
 msg['Submit'] = 'An Email Alert'
 msg['From'] = 'ryan@pythonscraping.com'
 msg['To'] = 'kdw59520@gmail.com'
 
-s = smtplib.SMTP('localhost')
-s.send_message(msg)
-s.quit()
+
+smtp.sendmail('kdw59520gmail.com', 'kdw59520gmail.com', msg.as_string())
+smtp.quit()
