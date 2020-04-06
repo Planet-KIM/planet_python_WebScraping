@@ -2,6 +2,7 @@ import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import string
+from collections import Counter
 
 
 #이를 이용하면 구문에서 깔끔하게 data만 뽑아올 수 있습니다.
@@ -33,9 +34,13 @@ def getNgramsFromSentence(content, n):
 #진입점 역할
 def getNgrams(content, n):
     content = cleanInput(content)
-    ngrams = []
+    #중복을 제거하여 보여주고 빈도수를 제크합니다.
+    ngrams =Counter()
+    ngrams_list = []
     for sentence in content:
-        ngrams.extend(getNgramsFromSentence(sentence, n))
+        newNgrams = [' '.join(ngram) for ngram in getNgramsFromSentence(sentence, n)]
+        ngrams_list.extend(newNgrams)
+        ngrams.update(newNgrams)
     return(ngrams)
 
 html = urlopen('http://en.wikipedia.org/wiki/Python_(programming_language)')
