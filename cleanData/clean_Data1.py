@@ -63,6 +63,7 @@ def getNgrams(content, n):
         ngrams_list.extend(newNgrams)
         ngrams.update(newNgrams)
     return(ngrams)
+
 '''
 html = urlopen('http://en.wikipedia.org/wiki/Python_(programming_language)')
 bs = BeautifulSoup(html, 'html.parser')
